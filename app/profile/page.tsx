@@ -7,16 +7,13 @@ import Image from "next/image"
 
 export default function ProfilePage() {
   const skills = [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "MongoDB",
-    "PostgreSQL",
-    "Python",
-    "Docker",
-    "AWS",
+    "微生物学",
+    "組織工学",
+    "生体模倣システム",
+    "血管",
+    "がん転移",
+    "フロントエンド",
+    "AIコーディング",
   ]
 
   const allPosts = getAllPosts()
@@ -40,7 +37,7 @@ export default function ProfilePage() {
                 />
               </div>
               <CardTitle className="text-2xl">Capillarist</CardTitle>
-              <p className="text-gray-600">フルスタック開発者</p>
+              <p className="text-gray-600">サイエンスライター</p>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center text-gray-600">
@@ -50,10 +47,6 @@ export default function ProfilePage() {
               <div className="flex items-center text-gray-600">
                 <Calendar className="h-4 w-4 mr-2" />
                 2025年からブログを開始
-              </div>
-              <div className="flex items-center text-gray-600">
-                <Code className="h-4 w-4 mr-2" />
-                5年以上の開発経験
               </div>
               <div className="flex items-center text-gray-600">
                 <svg className="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -72,7 +65,7 @@ export default function ProfilePage() {
                 <Link href="https://twitter.com" className="text-gray-600 hover:text-gray-900">
                   <Twitter className="h-6 w-6" />
                 </Link>
-                <Link href="mailto:contact@example.com" className="text-gray-600 hover:text-gray-900">
+                <Link href="mailto:capillarist@outlook.com" className="text-gray-600 hover:text-gray-900">
                   <Mail className="h-6 w-6" />
                 </Link>
               </div>
@@ -81,13 +74,13 @@ export default function ProfilePage() {
 
           {/* スキル */}
           <Card className="mt-6">
-            <CardHeader>
-              <CardTitle className="text-lg">スキル</CardTitle>
+            <CardHeader className="text-center">
+              <CardTitle className="text-lg">スキル・専門</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => (
-                  <Badge key={skill} variant="outline">
+                  <Badge key={skill} variant="outline" className="font-normal">
                     {skill}
                   </Badge>
                 ))}
@@ -151,20 +144,12 @@ export default function ProfilePage() {
           </Card>
 
           {/* 統計情報 */}
-          <div className="grid grid-cols-2 gap-4">
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">{allPosts.length}</div>
-                <div className="text-gray-600">総投稿数</div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">12.5K</div>
-                <div className="text-gray-600">総閲覧数</div>
-              </CardContent>
-            </Card>
-          </div>
+          <Card>
+            <CardContent className="p-6 text-center">
+              <div className="text-3xl font-bold text-blue-600 mb-2">{allPosts.length}</div>
+              <div className="text-gray-600">総投稿数</div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>

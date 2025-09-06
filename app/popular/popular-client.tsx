@@ -99,10 +99,6 @@ export default function PopularClient({ popularPosts }: PopularClientProps) {
                     <Calendar className="h-4 w-4 mr-1" />
                     {new Date(post.publishedAt).toLocaleDateString("ja-JP")}
                   </div>
-                  <div className="flex items-center font-semibold text-orange-600">
-                    <Eye className="h-4 w-4 mr-1" />
-                    {post.views.toLocaleString()}
-                  </div>
                   <div className="flex items-center">
                     <Clock className="h-4 w-4 mr-1" />
                     {post.readTime}分
