@@ -12,8 +12,11 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("")
   
   // 見出しの情報をログ出力
+  // デバッグ用ログは本番では無効化
   useEffect(() => {
-    console.log('目次の見出し一覧:', headings.length, '個')
+    if (process.env.NODE_ENV === 'development') {
+      console.log('目次の見出し一覧:', headings.length, '個')
+    }
   }, [headings])
 
   useEffect(() => {
