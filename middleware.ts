@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   
   // Rate limiting (簡易版 - 本格的な実装にはRedisなどが必要)
   const userAgent = request.headers.get('user-agent') || '';
-  const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
   
   // 疑わしいUser-Agentをブロック
   const suspiciousPatterns = [
