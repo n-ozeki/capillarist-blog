@@ -33,7 +33,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
         })
         
         if (topEntry) {
-          setActiveId(topEntry.target.id)
+          setActiveId((topEntry.target as HTMLElement).id)
         }
       },
       {
