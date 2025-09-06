@@ -23,7 +23,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         // 表示中の見出しの中で一番上にあるものをアクティブにする
-        let topEntry = null
+        let topEntry: IntersectionObserverEntry | null = null
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             if (!topEntry || entry.boundingClientRect.top < topEntry.boundingClientRect.top) {
