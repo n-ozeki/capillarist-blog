@@ -23,17 +23,16 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
     const observer = new IntersectionObserver(
       (entries: IntersectionObserverEntry[]) => {
         // 表示中の見出しの中で一番上にあるものをアクティブにする
-        let topEntry: IntersectionObserverEntry | null = null
-        entries.forEach((entry: IntersectionObserverEntry) => {
-          if (entry.isIntersecting) {
-            if (!topEntry || entry.boundingClientRect.top < topEntry.boundingClientRect.top) {
-              topEntry = entry
-            }
-          }
-        })
+        const visibleEntries = entries.filter(entry => entry.isIntersecting)
         
-        if (topEntry && topEntry.target instanceof HTMLElement) {
-          setActiveId(topEntry.target.id)
+        if (visibleEntries.length > 0) {
+          const topEntry = visibleEntries.reduce((top, entry) => {
+            return entry.boundingClientRect.top < top.boundingClientRect.top ? entry : top
+          })
+          
+          if (topEntry.target instanceof HTMLElement) {
+            setActiveId(topEntry.target.id)
+          }
         }
       },
       {
