@@ -1,0 +1,18 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Basketball circle -->
+  <circle cx="32" cy="32" r="28" stroke="#000" stroke-width="3" fill="none"/>
+  
+  <!-- Vertical center line -->
+  <path d="M32 4 L32 60" stroke="#000" stroke-width="2"/>
+  
+  <!-- Horizontal center line -->
+  <path d="M4 32 L60 32" stroke="#000" stroke-width="2"/>
+  
+  <!-- Diagonal lines for basketball pattern -->
+  <path d="M11 11 L53 53" stroke="#000" stroke-width="2"/>
+  <path d="M11 53 L53 11" stroke="#000" stroke-width="2"/>
+  
+  <!-- Curved lines for basketball segments -->
+  <path d="M4 32 Q32 10, 60 32" stroke="#000" stroke-width="2" fill="none"/>
+  <path d="M4 32 Q32 54, 60 32" stroke="#000" stroke-width="2" fill="none"/>
+</svg>
