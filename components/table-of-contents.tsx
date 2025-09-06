@@ -21,10 +21,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
     // アクティブな見出しを監視
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries: IntersectionObserverEntry[]) => {
         // 表示中の見出しの中で一番上にあるものをアクティブにする
         let topEntry: IntersectionObserverEntry | null = null
-        entries.forEach(entry => {
+        entries.forEach((entry: IntersectionObserverEntry) => {
           if (entry.isIntersecting) {
             if (!topEntry || entry.boundingClientRect.top < topEntry.boundingClientRect.top) {
               topEntry = entry
@@ -32,8 +32,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
           }
         })
         
-        if (topEntry) {
-          setActiveId((topEntry.target as HTMLElement).id)
+        if (topEntry && topEntry.target instanceof HTMLElement) {
+          setActiveId(topEntry.target.id)
         }
       },
       {
