@@ -14,7 +14,7 @@ import TableOfContents from "@/components/table-of-contents"
 import AuthorProfile from "@/components/author-profile"
 import { extractHeadings } from "@/lib/toc-utils"
 
-export default async function PostPage({ params }: { params: { id: string } }) {
+export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
   // paramsをawaitで解決
   const { id } = await params
   
