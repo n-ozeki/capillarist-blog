@@ -8,8 +8,8 @@ import Footer from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Capillarist - Personal Blog",
-  description: "A personal blog about technology, life, and everything in between",
+  title: "Capillarist",
+  description: "テクノロジー、科学、人生について考えるブログ",
     generator: 'v0.dev'
 }
 
