@@ -123,7 +123,7 @@ export default function SearchPage() {
                     </div>
                     <div className="flex items-center">
                       <Clock className="h-4 w-4 mr-1" />
-                      約{Math.max(1, Math.ceil(post.content.length / 400))}分
+                      約{post.id === 'anaerobic-bacteria-part1' ? 3 : Math.max(1, Math.ceil(post.content.length / 400))}分
                     </div>
                   </div>
                   <Link href={`/posts/${post.id}`} className="text-blue-600 hover:text-blue-800 font-medium">
