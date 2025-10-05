@@ -2,7 +2,7 @@
 title: "前編：腸内細菌はなぜ酸素がなくても生きられるのか"
 date: "2025-10-05"
 tags: ["腸内細菌", "嫌気性", "代謝", "微生物", "科学"]
-image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&h=400&fit=crop"
+image: "https://images.unsplash.com/photo-1530973428-5bf2db2e4d71?w=800&h=400&fit=crop"
 ---
 
 # 前編：腸内細菌はなぜ酸素がなくても生きられるのか
