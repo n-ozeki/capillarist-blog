@@ -1,0 +1,6 @@
+# すべての検索エンジンクローラーを許可
+User-agent: *
+Allow: /
+
+# サイトマップの場所
+Sitemap: https://v0-capillarist-blog.vercel.app/sitemap.xml

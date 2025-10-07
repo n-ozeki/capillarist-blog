@@ -13,6 +13,37 @@ import { mdxComponents } from "@/components/mdx-components"
 import TableOfContents from "@/components/table-of-contents"
 import AuthorProfile from "@/components/author-profile"
 import { extractHeadings } from "@/lib/toc-utils"
+import { generatePostMetadata } from "@/lib/metadata"
+import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/structured-data"
+import type { Metadata } from "next"
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params
+  const postDir = path.join(process.cwd(), "app/posts", id)
+  const mdPath = path.join(postDir, "post.md")
+
+  if (!fs.existsSync(mdPath)) {
+    return {}
+  }
+
+  const file = fs.readFileSync(mdPath, "utf8")
+  const { data, content } = matter(file)
+
+  // 概要を作成（最初の200文字）
+  const plainContent = content.replace(/[#*`_~\[\]]/g, '').replace(/\n+/g, ' ').trim()
+  const description = plainContent.length > 200
+    ? plainContent.substring(0, 200) + "..."
+    : plainContent
+
+  return generatePostMetadata(
+    data.title || "無題",
+    description,
+    data.image || "/placeholder.jpg",
+    data.date || new Date().toISOString(),
+    data.tags || [],
+    id
+  )
+}
 
 export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
   // paramsをawaitで解決
@@ -37,10 +68,28 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
   // 目次の見出しを抽出
   const headings = extractHeadings(content)
 
+  // 概要を作成（構造化データ用）
+  const plainContent = content.replace(/[#*`_~\[\]]/g, '').replace(/\n+/g, ' ').trim()
+  const description = plainContent.length > 200
+    ? plainContent.substring(0, 200) + "..."
+    : plainContent
 
+  // パンくずリストのアイテム
+  const breadcrumbItems = [
+    { name: "ホーム", url: "https://v0-capillarist-blog.vercel.app" },
+    { name: title, url: `https://v0-capillarist-blog.vercel.app/posts/${id}` }
+  ]
 
   return (
     <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <ArticleStructuredData
+        title={title}
+        description={description}
+        image={image || "/placeholder.jpg"}
+        datePublished={date}
+        url={`https://v0-capillarist-blog.vercel.app/posts/${id}`}
+      />
+      <BreadcrumbStructuredData items={breadcrumbItems} />
       {/* 戻るボタン */}
       <div className="mb-6">
         <Link href="/">
