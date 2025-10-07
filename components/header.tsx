@@ -26,13 +26,15 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* ロゴ */}
           <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/logo.png"
-              alt="Capillarist Logo"
-              width={60}
-              height={60}
-              className="object-contain"
-            />
+            <div className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Capillarist Logo"
+                width={60}
+                height={60}
+                className="object-contain"
+              />
+            </div>
             <h1 className="text-2xl font-bold text-gray-900">Capillarist</h1>
           </Link>
 
