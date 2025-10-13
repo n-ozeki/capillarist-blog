@@ -5,20 +5,21 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { WebsiteStructuredData } from "@/components/structured-data"
+import { siteConfig } from "@/lib/site-config"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://v0-capillarist-blog.vercel.app'),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Capillarist',
-    template: '%s | Capillarist',
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
-  description: "テクノロジー、科学、人生について考えるブログ",
-  keywords: ['テクノロジー', '科学', '人生', 'ブログ', '技術', '研究'],
-  authors: [{ name: 'Capillarist' }],
-  creator: 'Capillarist',
-  publisher: 'Capillarist',
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.author }],
+  creator: siteConfig.author,
+  publisher: siteConfig.author,
   robots: {
     index: true,
     follow: true,
@@ -32,28 +33,28 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'ja_JP',
-    url: 'https://v0-capillarist-blog.vercel.app',
-    siteName: 'Capillarist',
-    title: 'Capillarist',
-    description: 'テクノロジー、科学、人生について考えるブログ',
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    description: siteConfig.description,
     images: [
       {
-        url: '/og-image.png', // OG画像を追加してください
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: 'Capillarist',
+        alt: siteConfig.name,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Capillarist',
-    description: 'テクノロジー、科学、人生について考えるブログ',
-    images: ['/og-image.png'], // OG画像を追加してください
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
   alternates: {
-    canonical: 'https://v0-capillarist-blog.vercel.app',
+    canonical: siteConfig.url,
   },
   generator: 'v0.dev',
 }

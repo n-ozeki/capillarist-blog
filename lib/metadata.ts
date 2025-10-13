@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
+import { getSiteUrl } from './site-config'
 
-const baseUrl = 'https://v0-capillarist-blog.vercel.app'
+const baseUrl = getSiteUrl()
 
 export function generatePostMetadata(
   title: string,

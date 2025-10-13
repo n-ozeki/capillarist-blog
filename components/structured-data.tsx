@@ -1,14 +1,16 @@
+import { siteConfig } from "@/lib/site-config"
+
 export function WebsiteStructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Capillarist",
-    "url": "https://v0-capillarist-blog.vercel.app",
-    "description": "テクノロジー、科学、人生について考えるブログ",
+    "name": siteConfig.name,
+    "url": siteConfig.url,
+    "description": siteConfig.description,
     "inLanguage": "ja-JP",
     "publisher": {
       "@type": "Person",
-      "name": "Capillarist"
+      "name": siteConfig.author
     }
   }
 
@@ -42,7 +44,7 @@ export function ArticleStructuredData({
     "@type": "Article",
     "headline": title,
     "description": description,
-    "image": image.startsWith('http') ? image : `https://v0-capillarist-blog.vercel.app${image}`,
+    "image": image.startsWith('http') ? image : `${siteConfig.url}${image}`,
     "datePublished": datePublished,
     "dateModified": dateModified || datePublished,
     "author": {

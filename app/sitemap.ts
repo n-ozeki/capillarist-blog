@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/posts'
+import { getSiteUrl } from '@/lib/site-config'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
 
-  const baseUrl = 'https://v0-capillarist-blog.vercel.app'
+  const baseUrl = getSiteUrl()
 
   // 記事ページのサイトマップエントリー
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({

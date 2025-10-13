@@ -15,6 +15,7 @@ import AuthorProfile from "@/components/author-profile"
 import { extractHeadings } from "@/lib/toc-utils"
 import { generatePostMetadata } from "@/lib/metadata"
 import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/structured-data"
+import { siteConfig } from "@/lib/site-config"
 import type { Metadata } from "next"
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -76,8 +77,8 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
 
   // パンくずリストのアイテム
   const breadcrumbItems = [
-    { name: "ホーム", url: "https://v0-capillarist-blog.vercel.app" },
-    { name: title, url: `https://v0-capillarist-blog.vercel.app/posts/${id}` }
+    { name: "ホーム", url: siteConfig.url },
+    { name: title, url: `${siteConfig.url}/posts/${id}` }
   ]
 
   return (
@@ -87,7 +88,7 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
         description={description}
         image={image || "/placeholder.jpg"}
         datePublished={date}
-        url={`https://v0-capillarist-blog.vercel.app/posts/${id}`}
+        url={`${siteConfig.url}/posts/${id}`}
       />
       <BreadcrumbStructuredData items={breadcrumbItems} />
       {/* 戻るボタン */}
