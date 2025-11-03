@@ -16,6 +16,7 @@ import { extractHeadings } from "@/lib/toc-utils"
 import { generatePostMetadata } from "@/lib/metadata"
 import { ArticleStructuredData, BreadcrumbStructuredData } from "@/components/structured-data"
 import { siteConfig } from "@/lib/site-config"
+import ShareButton from "@/components/share-button"
 import type { Metadata } from "next"
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -120,10 +121,10 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
                 {date ? new Date(date).toLocaleDateString("ja-JP") : ""}
               </div>
             </div>
-            <Button variant="outline" size="sm">
-              <Share2 className="h-4 w-4 mr-2" />
-              シェア
-            </Button>
+            <ShareButton
+              title={title}
+              url={`${siteConfig.url}/posts/${id}`}
+            />
           </div>
         </CardHeader>
       </Card>
