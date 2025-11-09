@@ -62,7 +62,7 @@ export default function ShareButton({ title, url }: ShareButtonProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {navigator.share && (
+        {typeof navigator !== 'undefined' && typeof navigator.share === 'function' && (
           <DropdownMenuItem onClick={handleNativeShare}>
             <Share2 className="h-4 w-4 mr-2" />
             シェアする
