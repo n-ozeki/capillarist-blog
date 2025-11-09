@@ -34,7 +34,7 @@ image: "/posts/mitochondria-transfer/brano-Mm1VIPqd0OA-unsplash.jpg"
   <img
     src="/posts/mitochondria-transfer/figure2.png"
     alt="トンネリングナノチューブ（TNT）"
-    className="mx-auto rounded-lg shadow-sm"
+    className="mx-auto w-full max-w-full h-auto rounded-lg shadow-sm"
     loading="lazy"
   />
   <figcaption className="mt-2 text-center text-sm text-gray-500 italic">
@@ -46,7 +46,7 @@ image: "/posts/mitochondria-transfer/brano-Mm1VIPqd0OA-unsplash.jpg"
   <img
     src="/posts/mitochondria-transfer/figure1.png"
     alt="細胞外小胞（EV）"
-    className="mx-auto rounded-lg shadow-sm"
+    className="mx-auto w-full max-w-full h-auto rounded-lg shadow-sm"
     loading="lazy"
   />
   <figcaption className="mt-2 text-center text-sm text-gray-500 italic">
@@ -68,7 +68,7 @@ image: "/posts/mitochondria-transfer/brano-Mm1VIPqd0OA-unsplash.jpg"
   <img
     src="/posts/mitochondria-transfer/figure3.png"
     alt="T細胞からがん細胞へのミトコンドリア転移"
-    className="mx-auto rounded-lg shadow-sm"
+    className="mx-auto w-full max-w-full h-auto rounded-lg shadow-sm"
     loading="lazy"
   />
   <figcaption className="mt-2 text-center text-sm text-gray-500 italic">
@@ -82,7 +82,7 @@ image: "/posts/mitochondria-transfer/brano-Mm1VIPqd0OA-unsplash.jpg"
   <img
     src="/posts/mitochondria-transfer/figure4.png"
     alt="がん細胞からT細胞へのミトコンドリア転移"
-    className="mx-auto rounded-lg shadow-sm"
+    className="mx-auto w-full max-w-full h-auto rounded-lg shadow-sm"
     loading="lazy"
   />
   <figcaption className="mt-2 text-center text-sm text-gray-500 italic">
