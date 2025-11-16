@@ -22,10 +22,10 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* ロゴ */}
-          <Link href="/" className="flex items-center gap-1">
+          <Link href="/" className="flex items-center gap-1 flex-shrink-0 -ml-2 md:ml-0">
             <div className="flex items-center translate-y-[5px]">
               <Image
                 src="/logo.png"
@@ -72,7 +72,7 @@ export default function Header() {
           </form>
 
           {/* モバイルメニューボタン */}
-          <Button variant="ghost" size="sm" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <Button variant="ghost" size="sm" className="md:hidden ml-auto" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>

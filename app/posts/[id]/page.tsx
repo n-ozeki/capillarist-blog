@@ -138,10 +138,6 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
 
         {/* 記事本文 */}
         <div className="xl:col-span-4">
-          {/* モバイル用目次 */}
-          <div className="xl:hidden mb-6">
-            <TableOfContents headings={headings} />
-          </div>
           <Card>
             <CardContent className="prose prose-lg prose-neutral max-w-none p-8">
               {/* アイキャッチ画像をタイトル直後に配置 */}
