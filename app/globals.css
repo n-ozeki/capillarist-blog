@@ -78,7 +78,7 @@
 }
 
 .prose h1 {
-  @apply text-3xl font-bold mt-8 mb-6 text-gray-900;
+  @apply text-2xl md:text-3xl font-bold mt-8 mb-6 text-gray-900;
 }
 
 .prose h2 {

@@ -5,6 +5,7 @@ export function WebsiteStructuredData() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": siteConfig.name,
+    "alternateName": siteConfig.nameJa,
     "url": siteConfig.url,
     "description": siteConfig.description,
     "inLanguage": "ja-JP",

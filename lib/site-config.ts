@@ -8,10 +8,11 @@ export function getSiteUrl(): string {
 
 export const siteConfig = {
   name: 'Capillarist',
-  description: 'テクノロジー、科学、人生について考えるブログ',
+  nameJa: 'キャピラリスト',
+  description: 'Capillarist（キャピラリスト）- テクノロジー、科学、人生について考えるブログ',
   url: getSiteUrl(),
   ogImage: '/og-image.png',
-  keywords: ['テクノロジー', '科学', '人生', 'ブログ', '技術', '研究'],
+  keywords: ['Capillarist', 'キャピラリスト', 'テクノロジー', '科学', '人生', 'ブログ', '技術', '研究'],
   author: 'Capillarist',
   locale: 'ja_JP',
 }

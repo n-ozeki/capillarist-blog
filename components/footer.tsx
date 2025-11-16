@@ -10,7 +10,7 @@ export default function Footer() {
               プライバシーポリシー
             </Link>
           </div>
-          <p className="text-gray-600">© 2025 Capillarist. All rights reserved.</p>
+          <p className="text-gray-600">© 2025 Capillarist（キャピラリスト）. All rights reserved.</p>
         </div>
       </div>
     </footer>
