@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { GoogleAnalytics } from '@next/third-parties/google'
 import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -79,6 +80,7 @@ export default function RootLayout({
           <Footer />
         </div>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
     </html>
   )
 }

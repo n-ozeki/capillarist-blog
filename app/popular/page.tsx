@@ -3,36 +3,54 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Calendar, Eye, Clock, TrendingUp } from "lucide-react"
 import { getAllPosts } from "@/lib/posts"
+import { getPopularPosts } from "@/lib/analytics"
 import PopularClient from "./popular-client"
 
-// 実際のブログ投稿データを取得し、人気記事として整理
-function getPopularPostsData() {
+// Google Analyticsから実際の人気記事データを取得
+async function getPopularPostsData() {
   const allPosts = getAllPosts()
-  
-  // 実際のデータから人気記事を生成（サンプル数値付き）
-  const popularData = allPosts.map((post, index) => ({
-    id: post.id,
-    title: post.title,
-    excerpt: post.excerpt,
-    tags: post.tags,
-    publishedAt: post.date,
-    views: Math.floor(Math.random() * 2000) + 500, // サンプル閲覧数
-    readTime: Math.floor(Math.random() * 10) + 5, // サンプル読了時間
-    rank: index + 1,
-  }))
 
-  // 閲覧数でソート
-  const sortedByViews = [...popularData].sort((a, b) => b.views - a.views)
+  // Google Analyticsからページビューを取得
+  const weeklyViews = await getPopularPosts(10, '7daysAgo', 'today')
+  const monthlyViews = await getPopularPosts(10, '30daysAgo', 'today')
+  const yearlyViews = await getPopularPosts(10, '365daysAgo', 'today')
+
+  // ページパスから記事IDを抽出して記事データとマージ
+  const mapViewsToPosts = (views: any[]) => {
+    return views
+      .map((view) => {
+        // /posts/article-id から article-id を抽出
+        const match = view.pagePath.match(/\/posts\/([^\/]+)/)
+        if (!match) return null
+
+        const postId = match[1]
+        const post = allPosts.find((p) => p.id === postId)
+        if (!post) return null
+
+        return {
+          id: post.id,
+          title: post.title,
+          excerpt: post.excerpt,
+          tags: post.tags,
+          publishedAt: post.date,
+          views: view.views,
+          readTime: Math.floor(Math.random() * 10) + 5, // 読了時間は推定
+          rank: 0, // 後で設定
+        }
+      })
+      .filter((p) => p !== null)
+      .map((post, index) => ({ ...post, rank: index + 1 }))
+  }
 
   return {
-    weekly: sortedByViews.slice(0, 2),
-    monthly: sortedByViews.slice(0, 3),
-    yearly: sortedByViews,
+    weekly: mapViewsToPosts(weeklyViews).slice(0, 2),
+    monthly: mapViewsToPosts(monthlyViews).slice(0, 3),
+    yearly: mapViewsToPosts(yearlyViews),
   }
 }
 
-export default function PopularPage() {
-  const popularPosts = getPopularPostsData()
+export default async function PopularPage() {
+  const popularPosts = await getPopularPostsData()
 
   return <PopularClient popularPosts={popularPosts} />
 }
