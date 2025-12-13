@@ -37,12 +37,22 @@ export async function getPopularPosts(
   endDate: string = 'today'
 ): Promise<PageView[]> {
   try {
+    console.log('[GA Debug] Starting getPopularPosts with:', { startDate, endDate, limit })
+    console.log('[GA Debug] Environment check:', {
+      hasClientEmail: !!process.env.GOOGLE_CLIENT_EMAIL,
+      hasPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+      hasPropertyId: !!process.env.GA_PROPERTY_ID,
+      propertyId: process.env.GA_PROPERTY_ID,
+    })
+
     const analyticsDataClient = getAnalyticsClient()
     const propertyId = process.env.GA_PROPERTY_ID
 
     if (!propertyId) {
       throw new Error('GA_PROPERTY_ID is not set')
     }
+
+    console.log('[GA Debug] Calling GA API for property:', propertyId)
 
     const [response] = await analyticsDataClient.runReport({
       property: `properties/${propertyId}`,
@@ -83,6 +93,8 @@ export async function getPopularPosts(
     })
 
     const pageViews: PageView[] = []
+
+    console.log('[GA Debug] Response received, rows:', response.rows?.length || 0)
 
     if (response.rows) {
       for (const row of response.rows) {
