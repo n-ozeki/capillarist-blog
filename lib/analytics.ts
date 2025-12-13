@@ -1,27 +1,21 @@
 import { BetaAnalyticsDataClient } from '@google-analytics/data'
-import fs from 'fs'
-import path from 'path'
 
 // Google Analytics Data APIクライアントの初期化
 function getAnalyticsClient() {
-  const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS
+  const clientEmail = process.env.GOOGLE_CLIENT_EMAIL
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY
 
-  if (!credentialsPath) {
-    throw new Error('GOOGLE_APPLICATION_CREDENTIALS is not set')
+  if (!clientEmail || !privateKey) {
+    throw new Error('GOOGLE_CLIENT_EMAIL or GOOGLE_PRIVATE_KEY is not set')
   }
 
-  const fullPath = path.resolve(process.cwd(), credentialsPath)
-
-  if (!fs.existsSync(fullPath)) {
-    throw new Error(`Credentials file not found: ${fullPath}`)
-  }
-
-  const credentials = JSON.parse(fs.readFileSync(fullPath, 'utf8'))
+  // Vercelでは改行が\\nとしてエスケープされるため、実際の改行に変換
+  const formattedPrivateKey = privateKey.replace(/\\n/g, '\n')
 
   return new BetaAnalyticsDataClient({
     credentials: {
-      client_email: credentials.client_email,
-      private_key: credentials.private_key,
+      client_email: clientEmail,
+      private_key: formattedPrivateKey,
     },
   })
 }
