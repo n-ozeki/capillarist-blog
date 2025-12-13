@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
   // paramsをawaitで解決
   const { id } = await params
-  
+
   // マークダウンファイルのパスを決定
   const postDir = path.join(process.cwd(), "app/posts", id)
   const mdPath = path.join(postDir, "post.md")
@@ -142,16 +142,16 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
             <CardContent className="prose prose-lg prose-neutral max-w-none p-8">
               {/* アイキャッチ画像をタイトル直後に配置 */}
               {image && (
-                <div className="mb-8 flex justify-center">
-                  <div className="relative w-full max-w-3xl aspect-[16/9] overflow-hidden rounded-lg">
-                    <Image
-                      src={image}
-                      alt={title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                    />
-                  </div>
+                <div className="mb-8">
+                  <Image
+                    src={image}
+                    alt={title}
+                    width={800}
+                    height={450}
+                    className="w-full h-auto rounded-lg"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
                 </div>
               )}
               <MDXRemote source={content} components={mdxComponents} />

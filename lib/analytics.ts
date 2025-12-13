@@ -6,7 +6,9 @@ function getAnalyticsClient() {
   const privateKey = process.env.GOOGLE_PRIVATE_KEY
 
   if (!clientEmail || !privateKey) {
-    throw new Error('GOOGLE_CLIENT_EMAIL or GOOGLE_PRIVATE_KEY is not set')
+    // ローカル開発では環境変数がない場合がある
+    console.warn('[GA] GOOGLE_CLIENT_EMAIL or GOOGLE_PRIVATE_KEY is not set - skipping analytics')
+    return null
   }
 
   // Vercelでは改行が\\nとしてエスケープされるため、実際の改行に変換
@@ -46,10 +48,18 @@ export async function getPopularPosts(
     })
 
     const analyticsDataClient = getAnalyticsClient()
+
+    // ローカル開発などで環境変数がない場合は空を返す
+    if (!analyticsDataClient) {
+      console.log('[GA Debug] Analytics client not available - returning empty data')
+      return []
+    }
+
     const propertyId = process.env.GA_PROPERTY_ID
 
     if (!propertyId) {
-      throw new Error('GA_PROPERTY_ID is not set')
+      console.warn('[GA] GA_PROPERTY_ID is not set - returning empty data')
+      return []
     }
 
     console.log('[GA Debug] Calling GA API for property:', propertyId)

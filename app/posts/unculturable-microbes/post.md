@@ -2,7 +2,7 @@
 title: "[微生物入門]多くの微生物は狙っても増えないらしい"
 date: "2025-12-03"
 tags: ["微生物", "培養", "微生物入門", "科学", "16S rRNA"]
-image: "https://images.unsplash.com/photo-1532187643603-ba119ca4109e?w=800&h=400&fit=crop"
+image: "/posts/unculturable-microbes.png"
 ---
 
 # [微生物入門]多くの微生物は狙っても増えないらしい
