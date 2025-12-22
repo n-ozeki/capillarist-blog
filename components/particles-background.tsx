@@ -8,7 +8,19 @@ declare global {
   }
 }
 
-export function ParticlesBackground() {
+interface ParticlesBackgroundProps {
+  id?: string;
+  particleColor?: string;
+  lineColor?: string;
+  backgroundGradient?: string;
+}
+
+export function ParticlesBackground({
+  id = 'particles-js',
+  particleColor = '#87ceeb', // デフォルト: 淡い水色 (Sky Blue)
+  lineColor = '#87ceeb',
+  backgroundGradient = 'linear-gradient(to bottom, #ffffff, #f0f9ff)',
+}: ParticlesBackgroundProps) {
   useEffect(() => {
     // particles.jsのスクリプトをロード
     const script = document.createElement('script');
@@ -17,7 +29,7 @@ export function ParticlesBackground() {
     script.onload = () => {
       // particles.jsがロードされた後に初期化
       if (window.particlesJS) {
-        window.particlesJS('particles-js', {
+        window.particlesJS(id, {
           particles: {
             number: {
               value: 80,
@@ -27,7 +39,7 @@ export function ParticlesBackground() {
               }
             },
             color: {
-              value: '#87ceeb' // 淡い水色 (Sky Blue)
+              value: particleColor
             },
             shape: {
               type: 'circle',
@@ -59,7 +71,7 @@ export function ParticlesBackground() {
             line_linked: {
               enable: true,
               distance: 150,
-              color: '#87ceeb', // 淡い水色
+              color: lineColor,
               opacity: 0.4,
               width: 1
             },
@@ -115,15 +127,16 @@ export function ParticlesBackground() {
         script.parentNode.removeChild(script);
       }
     };
-  }, []);
+  }, [id, particleColor, lineColor]);
 
   return (
     <div
-      id="particles-js"
+      id={id}
       className="fixed top-0 left-0 w-full h-full -z-10"
       style={{
-        background: 'linear-gradient(to bottom, #ffffff, #f0f9ff)'
+        background: backgroundGradient
       }}
     />
   );
 }
+
