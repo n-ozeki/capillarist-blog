@@ -6,6 +6,9 @@ import { getAllPosts } from "@/lib/posts"
 import { getPopularPosts } from "@/lib/analytics"
 import PopularClient from "./popular-client"
 
+// キャッシュを無効化して毎回GA APIを呼び出す
+export const dynamic = 'force-dynamic'
+
 // Google Analyticsから実際の人気記事データを取得
 async function getPopularPostsData() {
   const allPosts = getAllPosts()
