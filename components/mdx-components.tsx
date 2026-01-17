@@ -55,6 +55,23 @@ const CustomLink = ({ href, children, ...props }: any) => {
   )
 }
 
+const CustomImage = ({ src, alt, ...props }: any) => {
+  return (
+    <img
+      src={src}
+      alt={alt || ''}
+      {...props}
+      style={{
+        width: '100%',
+        maxWidth: '100%',
+        height: 'auto',
+        margin: '1rem 0',
+        borderRadius: '8px',
+      }}
+    />
+  )
+}
+
 export const mdxComponents = {
   h1: createHeadingComponent(1),
   h2: createHeadingComponent(2),
@@ -63,4 +80,5 @@ export const mdxComponents = {
   h5: createHeadingComponent(5),
   h6: createHeadingComponent(6),
   a: CustomLink,
+  img: CustomImage,
 }
